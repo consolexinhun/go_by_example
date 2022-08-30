@@ -2,21 +2,6 @@ package main
 
 import "fmt"
 
-type rect struct {
-	width, height int
-}
-
-// 这里的 `area` 方法有一个_接收器(receiver)类型_ `rect`。
-func (r *rect) area() int {
-	return r.width * r.height
-}
-
-// 可以为值类型或者指针类型的接收器定义方法。
-// 这里是一个值类型接收器的例子。
-func (r rect) perim() int {
-	return 2*r.width + 2*r.height
-}
-
 func main() {
 	r := rect{width: 10, height: 5}
 
@@ -30,4 +15,19 @@ func main() {
 	rp := &r
 	fmt.Println("area: ", rp.area())
 	fmt.Println("perim:", rp.perim())
+}
+
+type rect struct {
+	width, height int
+}
+
+// 这里的 `area` 方法有一个_接收器(receiver)类型_ `rect`。
+func (r *rect) area() int {
+	return r.width * r.height
+}
+
+// 可以为值类型或者指针类型的接收器定义方法。
+// 这里是一个值类型接收器的例子。
+func (r rect) perim() int {
+	return 2*r.width + 2*r.height
 }

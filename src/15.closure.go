@@ -2,16 +2,6 @@ package main
 
 import "fmt"
 
-// 这个 `intSeq` 函数返回另一个在 `intSeq` 函数体内定义的匿名函数。
-// 这个返回的函数使用闭包的方式 _隐藏_ 变量 `i`。
-func intSeq() func() int {
-	i := 0
-	return func() int {
-		i++
-		return i
-	}
-}
-
 func main() {
 
 	// 我们调用 `intSeq` 函数，将返回值（一个函数）赋给`nextInt`。
@@ -27,4 +17,14 @@ func main() {
 	// 为了确认这个状态对于这个特定的函数是唯一的，我们重新创建并测试一下。
 	newInts := intSeq()
 	fmt.Println(newInts())
+}
+
+// 这个 `intSeq` 函数返回另一个在 `intSeq` 函数体内定义的匿名函数。
+// 这个返回的函数使用闭包的方式 _隐藏_ 变量 `i`。
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
 }
